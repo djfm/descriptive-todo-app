@@ -3,12 +3,12 @@ import deepFreeze from 'deep-freeze';
 import App from '../lib/App';
 import Goal from '../models/Goal';
 
-const app = new App().setGoal(Goal);
+const initialState = new App().setGoal(Goal);
 
-export default function appReducer(initialState = app, action) {
-    deepFreeze(initialState);
+console.log(new Goal().getSlots());
 
+export function appReducer(app = initialState, action) {
+    deepFreeze(app);
 
-
-    return initialState;
+    return app.figureOutNextGoal();
 }

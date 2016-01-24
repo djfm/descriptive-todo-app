@@ -1,12 +1,13 @@
+import Model from '../lib/Model';
 import Board from './Board';
 
-export default class Goal {
+export default class Goal extends Model {
 
 }
 
 Goal.needs = {
     boards: {
         type: Board,
-        count: { atLeast: 1 }
+        atLeast: 1
     }
 };

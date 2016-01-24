@@ -1,16 +1,16 @@
+import Model from '../lib/Model';
 import TodoItem from './TodoItem';
 
-export default class TodoList {
+export default class TodoList extends Model {
 
 }
 
 TodoList.needs = {
     title: {
-        count: 1,
         type: 'text'
     },
     todoItems: {
-        count: { atLeast: 0 },
-        type: TodoItem
+        type: TodoItem,
+        atLeast: 0
     }
 };

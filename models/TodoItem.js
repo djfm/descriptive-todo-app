@@ -1,14 +1,14 @@
-export default class TodoItem {
+import Model from '../lib/Model';
+
+export default class TodoItem extends Model {
 
 }
 
 TodoItem.needs = {
     title: {
-        count: 1,
         type: 'text'
     },
     completed: {
-        count: 1,
         type: 'bool',
         defaultValue: false
     }
