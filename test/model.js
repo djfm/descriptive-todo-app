@@ -4,6 +4,11 @@ chai.should();
 
 import Model from '../lib/Model';
 
+function compareSlots (a, b) {
+    const sort = ({key: keyA}, {key: keyB}) => keyA < keyB ? -1 : 1;
+    return a.sort(sort).should.deep.equal(b.sort(sort));
+}
+
 describe('A Model', function () {
 
     class Product extends Model {}
@@ -81,6 +86,8 @@ describe('A Model', function () {
             const pic = new Picture();
             pic.title = 'Hello!';
             product.pictures = [pic];
+
+            pic.isViable().should.equal(false);
 
             product.getSlots().should.deep.equal([{
                 key: 'name',
@@ -164,9 +171,12 @@ describe('A Model', function () {
             b.b = 'hi';
             a.bs = [b];
 
-            a.getSlots().should.deep.equal([
+            compareSlots(a.getSlots(), [
                 {
                     key: 'bs[0].cs[0].c',
+                    type: 'text'
+                }, {
+                    key: 'bs[1].b',
                     type: 'text'
                 }, {
                     key: 'bs[1].cs[0].c',
